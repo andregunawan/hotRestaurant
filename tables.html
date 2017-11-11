@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Hot Ramen Restaurant</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css"> 
+    <link rel="stylesheet" href="/css/style.css">
     <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
    
@@ -53,16 +53,27 @@
         <div id="indexID" class="row">
             <nav class="navbar">
                 <ul class="nav navbar-left">
-                    <li><a href="https://hot-restaurant.herokuapp.com/api/tables">Clear Table</a></li>
+                    <li><a href="#" id="clearTable">Clear Table</a></li>
                     <p class ="pBorder"> | </p>
-                    <li><a href="https://hot-restaurant.herokuapp.com/api/waitlist">API Table Link</a></li>
+                    <li><a href="/queue" id="apiTable">API Table Link</a></li>
                     <p class ="pBorder"> | </p>
-                    <li><a href="https://hot-restaurant.herokuapp.com/api/waitlist">API Wait List</a></li>
+                    <li><a href="/waiting_queue" id="apiWait">API Wait List</a></li>
                 </ul>
             </nav>
         </div>
 
     </div>
-    <script src="assets/javascript/client.js"></script>
+    <script src="/javascript/table.js"></script>
+    <script>
+        $("#clearTable").on("click", () => {
+            let msg = "clear";
+            $.post("/clearTable",msg)
+                .done(function(data) {
+                    $("#reserveTable").empty();
+                    $("#waitingListTable").empty();
+                    alert("Table cleared!");
+                });
+        });
+    </script>
 </body>
 </html>
