@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css"> 
     <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
-   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>   
    
 </head>
 <body>
@@ -16,8 +15,8 @@
         <div class="jumbotron text-center">
             <h1>HOT RAMEN RESTAURANT</h1><hr>
             <h3>We only have 5 tables! Book your seat before they all are gone!</h3>
-            <button type="button">View Tables</button>
-            <button type="button">Make Reservation</button>
+            <a href="/tables"><button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-plus"></span> View Tables</button></a>
+            <a href="/reserve"><button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-plus"></span> Make Reservation</button></a>
         </div>
 
         <div id="indexID" class="row">
@@ -30,57 +29,7 @@
             </nav>
         </div>
 
-
-<!--         <header class="jumbotron text-center">Hot Ramen Restaurant</header>
-
-        <div class="card">
-            <div class="card-header">
-            Current Train Schedule
-            </div>
-            <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th>Train Name</th>
-                    <th>Destination</th>
-                    <th>Frequency (min)</th>
-                    <th>Next Arrival</th>
-                    <th>Minutes Away</th>
-                  </tr>
-                </thead>
-                <tbody id="table-data"></tbody>
-            </table>
-        </div>
-
-        <div class="card mt-2">
-            <div class="card-header">
-            Add Employee
-            </div>
-            <div class="card">
-                <form>
-                    <div class="form-group">
-                        <label for="trainName">Train Name:</label>
-                        <input type="text" class="form-control" id="train-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="destination">Destination:</label>
-                        <input type="text" class="form-control" id="train-destination" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="startYear">First Train Time: (military time) </label>
-                        <input type="text" class="form-control" placeholder="HH:MM" id="train-time" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="endYear">Frequency (minutes)</label>
-                        <input type="text" class="form-control" id="time-freq">
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" id="btn-add" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Submit </button>
-                    </div>
-                </form>
-            </div>
-        </div> -->
-
     </div>
-    <script src="assets/javascript/main.js"></script>
+    <script src="assets/javascript/client.js"></script>
 </body>
 </html>
