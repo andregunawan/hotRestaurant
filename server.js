@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require("path");
+const mysql = require("mysql");
 
 //EXPRESS INIT
 const app = express();
@@ -9,6 +10,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'assets')));
 
+const connection = mysql.createConnection({
+    host: "localhost",
+    port: 3306,
+
+    // Your username
+    user: "root",
+
+    // Your password
+    password: "",
+    database: "hot_restaurant"
+});
 
 var tables = [];
 
@@ -30,28 +42,16 @@ app.get("/queue", (req, res) => {
     return res.json(tables);
 });
 
-app.get("/waiting_queue", (req, res) => {
-    if(tables.length>5)
-    {
-        let waitList = [];
-        for(let i=5;i<tables.length;i++)
-        {
-            waitList.push(tables[i]);
-        }
-        res.json(waitList);
-    }
-    else
-    {
-        res.json({});
-    }
-});
-
 app.post("/api/new", function(req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body-parser middleware
     var newTable = req.body;
 
-    console.log(newTable);
+    console.log(newTable.name);
+
+    connection.query("INSERT INTO customer(customerName, phoneNumber, email, uniqueID) VALUE(?, ?, ?, ?)", [newTable.name, newTable.phone, newTable.email, newTable.id], function(error, result) {
+        if(error) throw error;
+    });
 
     tables.push(newTable);
 
@@ -68,3 +68,19 @@ app.post("/clearTable", function(req, res) {
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
 });
+
+// app.get("/waiting_queue", (req, res) => {
+//     if(tables.length>5)
+//     {
+//         let waitList = [];
+//         for(let i=5;i<tables.length;i++)
+//         {
+//             waitList.push(tables[i]);
+//         }
+//         res.json(waitList);
+//     }
+//     else
+//     {
+//         res.json({});
+//     }
+// });
